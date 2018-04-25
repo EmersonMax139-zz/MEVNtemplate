@@ -24,23 +24,57 @@ db.once("open", function(callback) {
   console.log("Connection succeeded")
 });
 
-// ---- MONGOOSE MODULE(S) -------
+// ---- MONGOOSE MODEL(S) -------
 var Bounty = require("../models/bounty");
 
 // ROUTES
 //  --- ES6 Syntax -- (req, res) is callback function)
-app.get('/bounties', (req,res) => {
-  res.send(
-    [{
-      title: "YO WHATS GOOD",
-      description: "How are you, Im wondering"
-    }]
-  )
-})
+// app.get('/bounties', (req,res) => {
+//   res.send(
+//     [{
+//       title: "Sup",
+//       description: "How are you, Im wondering"
+//     },
+//     {
+//       title: "Other Post",
+//       description: "This is another jawn"
+//     }
+//   ]
+//   )
+// })
 
 // --------------------------------------------
 
+// Add new bounty
+app.post('/bounties', (req, res) => {
+  var db = req.db;
+  var title = req.body.title;
+  var description = req.body.description;
+  var new_bounty = new Bounty({
+    title: title,
+    description: description
+  })
 
+  new_bounty.save(function (error) {
+    if (error) {
+      console.log(error)
+    }
+    res.send({
+      success: true,
+      message: 'Bounty saved successfully!'
+    })
+  })
+})
+
+// // Fetch Bounties (and sort)
+app.get('/bounties', (req, res) => {
+  Bounty.find({}, 'title description', function (error, bounties) {
+    if (error) { console.error(error); }
+    res.send({
+      bounties: bounties
+    })
+  }).sort({_id:-1})
+})
 
 
 app.listen(process.env.PORT || 8081)

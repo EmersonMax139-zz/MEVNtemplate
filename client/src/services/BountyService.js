@@ -5,5 +5,9 @@ import Api from '@/services/Api'
 export default {
   fetchBounties () {
     return Api().get('bounties')
+  },
+
+  addBounty (params) {
+    return Api().post('bounties', params)
   }
 }
