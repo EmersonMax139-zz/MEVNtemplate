@@ -25,7 +25,7 @@ db.once("open", function(callback) {
 });
 
 // ---- MONGOOSE MODULE(S) -------
-var Post = require("../models/post");
+var Bounty = require("../models/bounty");
 
 // ROUTES
 //  --- ES6 Syntax -- (req, res) is callback function)

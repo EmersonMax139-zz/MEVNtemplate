@@ -6,5 +6,5 @@ var BountySchema = new Schema({
   description: String,
 });
 
-var Post = mongoose.model("Bounty", BountySchema);
+var Bounty = mongoose.model("Bounty", BountySchema);
 module.exports = Bounty;
