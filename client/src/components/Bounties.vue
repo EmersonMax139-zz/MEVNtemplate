@@ -16,7 +16,7 @@
           <td>{{ bounty.description }}</td>
           <td align="center">
             <router-link v-bind:to="{ name: 'EditBounty', params: { id: bounty._id } }">Edit</router-link> |
-            <a href="#">Delete</a>
+            <a href="#" @click="deleteBounty(bounty._id)">Delete</a>
           </td>
         </tr>
       </table>
@@ -46,6 +46,11 @@ export default {
     async getBounties () {
       const response = await BountyService.fetchBounties()
       this.bounties = response.data.bounties
+    },
+    async deleteBounty (id) {
+      await BountyService.deleteBounty(id)
+      this.getBounties()
+      this.$router.push({ name: 'Bounties' })
     }
   }
 }

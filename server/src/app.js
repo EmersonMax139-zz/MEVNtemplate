@@ -27,23 +27,6 @@ db.once("open", function(callback) {
 // ---- MONGOOSE MODEL(S) -------
 var Bounty = require("../models/bounty");
 
-// ROUTES
-//  --- ES6 Syntax -- (req, res) is callback function)
-// app.get('/bounties', (req,res) => {
-//   res.send(
-//     [{
-//       title: "Sup",
-//       description: "How are you, Im wondering"
-//     },
-//     {
-//       title: "Other Post",
-//       description: "This is another jawn"
-//     }
-//   ]
-//   )
-// })
-
-// --------------------------------------------
 
 // Add new bounty
 app.post('/bounties', (req, res) => {
@@ -76,5 +59,49 @@ app.get('/bounties', (req, res) => {
   }).sort({_id:-1})
 })
 
+// Fetch single post
+app.get('/bounty/:id', (req, res) => {
+  var db = req.db;
+  Bounty.findById(req.params.id, 'title description', function (error, bounty) {
+    if (error) { console.error(error); }
+    res.send(bounty)
+  })
+})
 
+// Update a post
+app.put('/bounties/:id', (req, res) => {
+  var db = req.db;
+  Bounty.findById(req.params.id, 'title description', function (error, bounty) {
+    if (error) { console.error(error); }
+
+    bounty.title = req.body.title
+    bounty.description = req.body.description
+    bounty.save(function (error) {
+      if (error) {
+        console.log(error)
+      }
+      res.send({
+        success: true
+      })
+    })
+  })
+})
+
+// Delete a post
+app.delete('/bounties/:id', (req, res) => {
+  var db = req.db;
+  Bounty.remove({
+    _id: req.params.id
+  }, function(err, bounty){
+    if (err)
+      res.send(err)
+    res.send({
+      success: true
+    })
+  })
+})
+
+// ------------------------------------------
+
+// SERVER
 app.listen(process.env.PORT || 8081)
