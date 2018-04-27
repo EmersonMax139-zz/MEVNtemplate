@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Bounties from '@/components/Bounties'
 import NewBounty from '@/components/NewBounty'
 import EditBounty from '@/components/EditBounty'
+import Landing from '@/components/Landing'
 
 Vue.use(Router)
 
@@ -11,7 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '',
+      name: 'Landing',
+      component: Landing
     },
     {
       path: '/bounties',
