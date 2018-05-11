@@ -6,6 +6,18 @@
           <input type="text" name="title" placeholder="TITLE" v-model="title">
         </div>
         <div>
+          <input type="text" name="difficulty" placeholder="DIFFICULTY" v-model="difficulty">
+        </div>
+        <div>
+          <input type="text" name="subject" placeholder="SUBJECT" v-model="subject">
+        </div>
+        <div>
+          <input type="number" name="length" placeholder="LENGTH" v-model="length">
+        </div>
+        <div>
+          <input type="number" name="pay" placeholder="PAY" v-model="pay">
+        </div>
+        <div>
           <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
         </div>
         <div>
@@ -22,14 +34,22 @@ export default {
   data () {
     return {
       title: '',
-      description: ''
+      description: '',
+      difficulty: '',
+      subject: '',
+      length: 0,
+      pay: 0,
     }
   },
   methods: {
     async addBounty () {
       await BountyService.addBounty({
         title: this.title,
-        description: this.description
+        description: this.description,
+        difficulty: this.difficulty,
+        subject: this.subject,
+        length: this.length,
+        pay: this.pay,
       })
       this.$router.push({ name: 'Bounties' })
     }

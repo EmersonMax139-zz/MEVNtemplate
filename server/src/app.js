@@ -33,9 +33,18 @@ app.post('/bounties', (req, res) => {
   var db = req.db;
   var title = req.body.title;
   var description = req.body.description;
+  var difficulty = req.body.difficulty;
+  var subject = req.body.subject;
+  var length = req.body.length;
+  var pay = req.body.pay;
+
   var new_bounty = new Bounty({
-    title: title,
-    description: description
+    title,
+    description,
+    difficulty,
+    subject,
+    length,
+    pay,
   })
 
   new_bounty.save(function (error) {
@@ -51,7 +60,7 @@ app.post('/bounties', (req, res) => {
 
 // // Fetch Bounties (and sort)
 app.get('/bounties', (req, res) => {
-  Bounty.find({}, 'title description', function (error, bounties) {
+  Bounty.find({}, 'title description difficulty subject length pay', function (error, bounties) {
     if (error) { console.error(error); }
     res.send({
       bounties: bounties
@@ -62,7 +71,7 @@ app.get('/bounties', (req, res) => {
 // Fetch single post
 app.get('/bounty/:id', (req, res) => {
   var db = req.db;
-  Bounty.findById(req.params.id, 'title description', function (error, bounty) {
+  Bounty.findById(req.params.id, 'title description title description difficulty subject length pay', function (error, bounty) {
     if (error) { console.error(error); }
     res.send(bounty)
   })
@@ -71,11 +80,15 @@ app.get('/bounty/:id', (req, res) => {
 // Update a post
 app.put('/bounties/:id', (req, res) => {
   var db = req.db;
-  Bounty.findById(req.params.id, 'title description', function (error, bounty) {
+  Bounty.findById(req.params.id, 'title description title description difficulty subject length pay', function (error, bounty) {
     if (error) { console.error(error); }
 
     bounty.title = req.body.title
     bounty.description = req.body.description
+    bounty.difficulty = req.body.difficulty
+    bounty.subject = req.body.subject
+    bounty.length = req.body.length
+    bounty.pay = req.body.pay
     bounty.save(function (error) {
       if (error) {
         console.log(error)

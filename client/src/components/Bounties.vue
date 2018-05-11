@@ -9,11 +9,19 @@
         <tr>
           <td>Title</td>
           <td width="550">Description</td>
+          <td width="200">Difficulty</td>
+          <td width="200">Subject</td>
+          <td width="200">Length</td>
+          <td width="200">Pay</td>
           <td width="100" align="center">Action</td>
         </tr>
         <tr v-for="bounty in bounties">
           <td>{{ bounty.title }}</td>
           <td>{{ bounty.description }}</td>
+          <td>{{ bounty.difficulty }}</td>
+          <td>{{ bounty.subject }}</td>
+          <td>{{ bounty.length + " Hours" }}</td>
+          <td>{{ bounty.pay + " Dollars" }}</td>
           <td align="center">
             <router-link v-bind:to="{ name: 'EditBounty', params: { id: bounty._id } }">Edit</router-link> |
             <a href="#" @click="deleteBounty(bounty._id)">Delete</a>
