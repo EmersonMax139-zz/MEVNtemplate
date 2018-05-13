@@ -1,7 +1,7 @@
 // MAIN FILE
 // THIS IS RUN WITH npm start
 //
-// express() controls routes and and the server itself
+// express() -- used as app.() -- controls routes and and the server itself
 
 const express = require('express')
 const bodyParser = require('body-parser')
