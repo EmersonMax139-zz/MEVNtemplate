@@ -1,4 +1,4 @@
-// MAIN FILE
+// MAIN SERVER FILE
 // THIS IS RUN WITH npm start
 //
 // express() -- used as app.() -- controls routes and and the server itself
@@ -12,6 +12,11 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+
+// passport -- User Authentication Middleware
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
 // ---------------------------------------------------
 
 
