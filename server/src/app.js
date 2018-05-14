@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-// points express() to the routes folder
+// points express() to the individual routes  files
 var bounties = require('./routes/bounties.js');
 app.use('/bounties', bounties);
 
