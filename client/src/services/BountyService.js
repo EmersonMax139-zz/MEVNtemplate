@@ -16,7 +16,7 @@ export default {
   },
 
   getBounty (params) {
-    return Api().get('bounty/' + params.id)
+    return Api().get('bounties/' + params.id)
   },
 
   deleteBounty (id) {
