@@ -6,10 +6,10 @@
           <input type="text" name="username" placeholder="USERNAME" v-model="username">
         </div>
         <div>
-          <input type="password" name="password" placeholder="PASSWORD" v-model="password">
+          <input type="text" name="password" placeholder="PASSWORD" v-model="password">
         </div>
         <div>
-          <button class="app_bounty_btn" @click="addBounty">Add</button>
+          <button class="app_bounty_btn" @click="createUser">Add</button>
         </div>
       </div>
   </div>
@@ -19,7 +19,7 @@
 <script>
 import UserService from '@/services/UserService'
 export default {
-  name: 'createUser',
+  name: 'Signup',
   data() {
     return {
       username: '',
@@ -62,4 +62,4 @@ export default {
   border: none;
   cursor: pointer;
 }
-</style>21
+</style>
