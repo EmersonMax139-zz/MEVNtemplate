@@ -4,6 +4,8 @@ import Bounties from '@/components/Bounties'
 import NewBounty from '@/components/NewBounty'
 import EditBounty from '@/components/EditBounty'
 import Landing from '@/components/Landing'
+import Signup from '@/components/Signup'
+import Users from '@/components/Users'
 
 Vue.use(Router)
 
@@ -29,6 +31,15 @@ export default new Router({
       path:'/bounties/:id',
       name:'EditBounty',
       component: EditBounty
-    }
+    }, {
+      path:'/users',
+      name:'Users',
+      component: Users
+    }, {
+      path:'/users/new',
+      name:'Signup',
+      component: Signup
+    },
+
   ]
 })
