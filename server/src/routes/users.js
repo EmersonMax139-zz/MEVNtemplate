@@ -8,17 +8,6 @@ const morgan = require('morgan')
 // ------- Mongoose Model -----------
 var User = require("../../models/user");
 
-// ------ MONGOOSE DB -------
-// THIS IS WHERE ISSUE IS CURRENTLY --
-// Need to get separate User schema/separate database for users
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/users');
-// var dbOther = mongoose.connection;
-// dbOther.on("error", console.error.bind(console, "connection error"));
-// dbOther.once("open", function(callback) {
-//   console.log("Connection succeeded")
-// });
-
 // Add new user
 router.post('/', (req, res) => {
   var dbOthr = req.dbOther;

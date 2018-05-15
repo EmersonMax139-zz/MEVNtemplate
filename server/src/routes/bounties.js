@@ -8,19 +8,6 @@ const morgan = require('morgan')
 // ---- MONGOOSE MODEL(S) -------
 var Bounty = require("../../models/bounty");
 
-// ------ MONGOOSE DB -------
-// THIS IS WHERE ISSUE IS CURRENTLY --
-// Need to get separate User schema/separate database for users
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/bounties');
-// var db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error"));
-// db.once("open", function(callback) {
-//   console.log("Connection succeeded")
-// });
-
-
-
 // Add new bounty
 router.post('/', (req, res) => {
   var db = req.db;

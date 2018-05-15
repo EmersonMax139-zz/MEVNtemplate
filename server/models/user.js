@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // ------ MONGOOSE DB -------
-// THIS IS WHERE ISSUE IS CURRENTLY --
-// Need to get separate User schema/separate database for users
+// This is the only place connection needs to be.
+// Right now I am using separate connection for each model
 const dbUser = mongoose.createConnection('mongodb://localhost:27017/users');
 dbUser.on("error", console.error.bind(console, "connection error"));
 dbUser.once("open", function(callback) {
