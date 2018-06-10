@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-// THIS IS THE MAIN SERVICE -- All other services will import this,
-//   and use the function that it exports
-
+// THIS IS THE MAIN SERVICE -- All other services will import this
+//
 export default() => {
   return axios.create({
-    baseURL: `http://localhost:8081`
+    // This will change for deployment (example: 'api/')
+    baseURL: `http://localhost:8081/api/`
   })
 }
