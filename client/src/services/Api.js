@@ -5,6 +5,6 @@ import axios from 'axios'
 export default() => {
   return axios.create({
     // This will change for deployment (example: 'api/')
-    baseURL: `http://localhost:8081/api/`
+    baseURL: `/api/`
   })
 }
