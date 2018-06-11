@@ -4,9 +4,7 @@
     <p class="landingIntro"><span class="logosmall">TUDR</span> is an app that allows users to post or complete tasks (bounties) in self-contained agreements between the users.</p>
     <p class="landingInfo"><span class="logosmall">TUDR</span> focuses on <span class="logosmall">Bounties</span>, which are the fuel of the <span class="logosmall">TUDR</span> ecosystem. Each <span class="logosmall">Bounty</span> is a task that you, the <span class="logosmall">"Bounty Hunter"</span>, can choose to complete. Users can also post their own <span class="logosmall">Bounties</span>, with predetermined specifications, that others will be able to complete.</p>
     <p class="landingInfo">Each individual <span class="logosmall">Bounty</span> must be agreed upon by both users before agreement. Once the creator of the <span class="logosmall">Bounty</span> agrees that the <span class="logosmall">Bounty</span> is complete, the <span class="logosmall">"Bounty-Hunter"</span> will be paid the agreed upon amount.</p>
-
   </div>
-
 </template>
 
 <script>
@@ -23,11 +21,12 @@
 
 <style>
 
-  body {
+ .landingPage {
     background-color: #383838;
   }
 
   .landingPage {
+    background-color: #383838;
     text-align: center;
     padding-left: 200px;
     padding-right: 200px;
