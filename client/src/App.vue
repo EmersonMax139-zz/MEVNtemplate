@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <nav-component></nav-component>
     <router-view/>
   </div>
 </template>

@@ -9,7 +9,7 @@
           <input type="text" name="password" placeholder="PASSWORD" v-model="password">
         </div>
         <div>
-          <button class="app_bounty_btn" @click="createUser">Add</button>
+          <button class="app_post_btn" @click="createUser">Add</button>
         </div>
       </div>
   </div>
@@ -51,7 +51,7 @@ export default {
 .form div {
   margin: 20px;
 }
-.app_bounty_btn {
+.app_post_btn {
   background: #4d7ef7;
   color: #fff;
   padding: 10px 80px;

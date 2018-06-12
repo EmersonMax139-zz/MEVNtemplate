@@ -5,14 +5,11 @@ var Schema = mongoose.Schema;
 const db = mongoose.connection;
 
 
-var BountySchema = new Schema({
+var PostSchema = new Schema({
   title: String,
   description: String,
-  difficulty: String,
   subject: String,
-  length: Number,
-  pay: Number,
 });
 
-var Bounty = db.model("Bounty", BountySchema);
-module.exports = Bounty;
+var Post = db.model("Post", PostSchema);
+module.exports = Post;

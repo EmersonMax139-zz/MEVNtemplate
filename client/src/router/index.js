@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Bounties from '@/components/Bounties'
-import NewBounty from '@/components/NewBounty'
-import EditBounty from '@/components/EditBounty'
-import Landing from '@/components/Landing'
+import Posts from '@/components/Posts'
+import NewPost from '@/components/NewPost'
+import EditPost from '@/components/EditPost'
 import Signup from '@/components/Signup'
 import Users from '@/components/Users'
-import Nav from '@/components/Nav'
 
 Vue.use(Router)
 
@@ -14,24 +12,19 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'Landing',
-      component: Landing
+      path: '/posts',
+      name: 'Posts',
+      component: Posts
     },
     {
-      path: '/bounties',
-      name: 'Bounties',
-      component: Bounties
+      path: '/posts/new',
+      name: 'NewPost',
+      component: NewPost
     },
     {
-      path: '/bounties/new',
-      name: 'NewBounty',
-      component: NewBounty
-    },
-    {
-      path:'/bounties/:id',
-      name:'EditBounty',
-      component: EditBounty
+      path:'/posts/:id',
+      name:'EditPost',
+      component: EditPost
     },
     {
       path:'/users',
@@ -43,5 +36,5 @@ export default new Router({
       name:'Signup',
       component: Signup
     }
-  ]  
+  ]
 })

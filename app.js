@@ -18,8 +18,11 @@ app.use(cors())
 
 // --------- MONGOO DB ------------
 // This is the only place connection needs to be.
-//
-const uri = "mongodb://Emerjawn:1xander@ds245150.mlab.com:45150/tudr";
+
+// Place mongoDB or mLab connection here
+// https://docs.mongodb.com/manual/reference/connection-string/
+const uri = 'mongodb://localhost:27017/posts'
+
 
 mongoose.connect(uri);
 const db = mongoose.connection;
@@ -30,6 +33,7 @@ db.once("open", function(callback) {
 
 // ---------- STATIC FOlDER ---------
 // this serves the client application.
+// for testing use 'npm run dev' and go to localhost:8080
 app.use(express.static('./public'));
 
 router.get ('/', function(req, res) {
@@ -38,8 +42,8 @@ router.get ('/', function(req, res) {
 
 // ---------- ROUTES --------------
 // points the server (this file) to the individual routes files
-var bounties = require('./routes/bounties.js');
-app.use('/api/bounties', bounties);
+var posts = require('./routes/posts.js');
+app.use('/api/posts', posts);
 var users = require('./routes/users.js');
 app.use('/api/users', users);
 

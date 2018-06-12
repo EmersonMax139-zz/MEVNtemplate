@@ -6,44 +6,38 @@ const cors = require('cors')
 const morgan = require('morgan')
 
 // ---- MONGOOSE MODEL(S) -------
-var Bounty = require("../models/bounty");
+var Post = require("../models/post");
 
-// Add new bounty
+// Add new post
 router.post('/', (req, res) => {
   var db = req.db;
   var title = req.body.title;
   var description = req.body.description;
-  var difficulty = req.body.difficulty;
   var subject = req.body.subject;
-  var length = req.body.length;
-  var pay = req.body.pay;
 
-  var new_bounty = new Bounty({
+  var new_post = new Post({
     title,
     description,
-    difficulty,
     subject,
-    length,
-    pay,
   })
 
-  new_bounty.save(function (error) {
+  new_post.save(function (error) {
     if (error) {
       console.log(error)
     }
     res.send({
       success: true,
-      message: 'Bounty saved successfully!'
+      message: 'Post saved successfully!'
     })
   })
 })
 
 // // Fetch Bounties (and sort)
 router.get('/', (req, res) => {
-  Bounty.find({}, 'title description difficulty subject length pay', function (error, bounties) {
+  Post.find({}, 'title description subject', function (error, posts) {
     if (error) { console.error(error); }
     res.send({
-      bounties: bounties
+      posts: posts
     })
   }).sort({_id:-1})
 })
@@ -51,7 +45,7 @@ router.get('/', (req, res) => {
 // Fetch single post
 router.get('/:id', (req, res) => {
   var db = req.db;
-  Bounty.findById(req.params.id, 'title description title description difficulty subject length pay', function (error, bounty) {
+  Post.findById(req.params.id, 'title description subject', function (error, post) {
     if (error) { console.error(error); }
     res.send(bounty)
   })
@@ -60,16 +54,13 @@ router.get('/:id', (req, res) => {
 // Update a post
 router.put('/:id', (req, res) => {
   var db = req.db;
-  Bounty.findById(req.params.id, 'title description title description difficulty subject length pay', function (error, bounty) {
+  Post.findById(req.params.id, 'title description title description difficulty subject length pay', function (error, post) {
     if (error) { console.error(error); }
 
-    bounty.title = req.body.title
-    bounty.description = req.body.description
-    bounty.difficulty = req.body.difficulty
-    bounty.subject = req.body.subject
-    bounty.length = req.body.length
-    bounty.pay = req.body.pay
-    bounty.save(function (error) {
+    post.title = req.body.title
+    post.description = req.body.description
+    post.subject = req.body.subject
+    post.save(function (error) {
       if (error) {
         console.log(error)
       }
@@ -83,9 +74,9 @@ router.put('/:id', (req, res) => {
 // Delete a post
 router.delete('/:id', (req, res) => {
   var db = req.db;
-  Bounty.remove({
+  Post.remove({
     _id: req.params.id
-  }, function(err, bounty){
+  }, function(err, post){
     if (err)
       res.send(err)
     res.send({

@@ -1,9 +1,9 @@
 <template>
-  <div class="bounties">
+  <div class="posts">
     <h1>Bounties</h1>
     <div v-if="bounties.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{ name: 'NewBounty' }" class="">Add Bounty</router-link>
+        <router-link v-bind:to="{ name: 'NewPost' }" class="">Add Post</router-link>
       </div>
       <table>
         <tr>
@@ -15,50 +15,47 @@
           <td width="200">Pay</td>
           <td width="100" align="center">Action</td>
         </tr>
-        <tr v-for="bounty in bounties">
-          <td>{{ bounty.title }}</td>
-          <td>{{ bounty.description }}</td>
-          <td>{{ bounty.difficulty }}</td>
-          <td>{{ bounty.subject }}</td>
-          <td>{{ bounty.length + " Hours" }}</td>
-          <td>{{ bounty.pay + " Dollars" }}</td>
+        <tr v-for="post in posts">
+          <td>{{ post.title }}</td>
+          <td>{{ post.description }}</td>
+          <td>{{ post.subject }}</td>
           <td align="center">
-            <router-link v-bind:to="{ name: 'EditBounty', params: { id: bounty._id } }">Edit</router-link> |
-            <a href="#" @click="deleteBounty(bounty._id)">Delete</a>
+            <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id } }">Edit</router-link> |
+            <a href="#" @click="deletePost(post._id)">Delete</a>
           </td>
         </tr>
       </table>
     </div>
     <div v-else>
       There are no Bounties.. Lets add one now <br /><br />
-      <router-link v-bind:to="{ name: 'NewBounty' }" class="add_bounty_link">Add Bounty</router-link>
+      <router-link v-bind:to="{ name: 'NewPost' }" class="add_post_link">Add Post</router-link>
     </div>
   </div>
 </template>
 
 <script>
 
-import BountyService from '@/services/BountyService'
+import PostService from '@/services/PostService'
 
 export default {
-  name: 'bounties',
+  name: 'posts',
   data () {
     return {
       bounties: []
     }
   },
   mounted () {
-    this.getBounties()
+    this.getPosts()
   },
   methods: {
-    async getBounties () {
-      const response = await BountyService.fetchBounties()
-      this.bounties = response.data.bounties
+    async getPosts () {
+      const response = await PostService.fetchBounties()
+      this.posts = response.data.posts
     },
-    async deleteBounty (id) {
-      await BountyService.deleteBounty(id)
-      this.getBounties()
-      this.$router.push({ name: 'Bounties' })
+    async deletePost (id) {
+      await PostService.deletePost(id)
+      this.getPosts()
+      this.$router.push({ name: 'Posts' })
     }
   }
 }
@@ -91,7 +88,7 @@ a {
   color: #4d7ef7;
   text-decoration: none;
 }
-a.add_bounty_link {
+a.add_post_link {
   background: #4d7ef7;
   color: #fff;
   padding: 10px 80px;
