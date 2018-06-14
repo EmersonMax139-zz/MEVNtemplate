@@ -1,7 +1,7 @@
 {
-  "name": "TUDRfirst",
+  "name": "MEVN Stack Application Template",
   "version": "1.0.0",
-  "description": "TUDR server, using express",
+  "description": "Full Stack (MongoDB, Express, VueJS, Node) Template",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
